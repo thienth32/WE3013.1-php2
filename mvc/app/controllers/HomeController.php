@@ -1,11 +1,12 @@
 <?php
 namespace App\Controllers;
 use App\Models\User;
-class HomeController{
+
+class HomeController extends BaseController{
 
     public function index(){
         $data = User::$data;
-        include_once './app/views/home/index.php';
+        $this->render('home.index', ['data' => $data]);
     }
 }
 

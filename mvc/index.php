@@ -1,6 +1,6 @@
 <?php
-require_once './app/controllers/HomeController.php';
-require_once './app/models/User.php';
+require_once './vendor/autoload.php';
+
 use App\Controllers\HomeController;
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
