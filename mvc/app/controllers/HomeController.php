@@ -5,8 +5,10 @@ use App\Models\User;
 class HomeController extends BaseController{
 
     public function index(){
-        $data = User::$data;
-        $this->render('home.index', ['data' => $data]);
+        // $data = User::$data;
+        $data = "<strong>thẻ bôi đậm</strong>";
+        $gender = 3;
+        $this->render('home.index', ['data' => $data, 'gender' => $gender]);
     }
 }
 
