@@ -11,59 +11,110 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 15/07/2021 10:45:34
+ Date: 20/07/2021 11:05:27
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for departments
+-- Table structure for categories
 -- ----------------------------
-DROP TABLE IF EXISTS `departments`;
-CREATE TABLE `departments` (
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `founding_date` date DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Records of departments
+-- Records of categories
 -- ----------------------------
 BEGIN;
-INSERT INTO `departments` VALUES (1, 'Phòng hành chính', 'Tòa P, Cao đẳng FPT Polytechnic', '2008-06-04', '2021-06-23 18:10:12', '2021-06-23 18:10:12');
-INSERT INTO `departments` VALUES (2, 'Phòng tổ chức & quản lý đào tạo', 'Tòa F, Cao đẳng FPT Polytechnic', '2007-03-01', '2021-06-23 18:10:46', '2021-06-23 18:10:46');
-INSERT INTO `departments` VALUES (3, 'Phòng Công tác sinh viên', 'Tòa L, số 7 Tôn Thất Thuyết', '2009-07-13', '2021-06-23 18:11:15', '2021-06-23 18:11:15');
 COMMIT;
 
 -- ----------------------------
--- Table structure for employees
+-- Table structure for conditions
 -- ----------------------------
-DROP TABLE IF EXISTS `employees`;
-CREATE TABLE `employees` (
+DROP TABLE IF EXISTS `conditions`;
+CREATE TABLE `conditions` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `join_date` date DEFAULT NULL,
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `department_id` int DEFAULT NULL,
-  `salary` int DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Records of employees
+-- Records of conditions
 -- ----------------------------
 BEGIN;
-INSERT INTO `employees` VALUES (1, 'Đỗ Thị Bích Hiền', 'Hà Nội', '2011-12-05', 'hiendtb.jpg', 3, 10000000, '2021-06-23 18:12:44', '2021-06-23 18:12:44');
-INSERT INTO `employees` VALUES (2, 'Nguyễn Văn Nam', 'Nam ĐỊnh', '2010-01-05', 'namnv.png', 2, 15000000, '2021-06-23 18:13:14', '2021-06-23 18:13:14');
-INSERT INTO `employees` VALUES (3, 'Đỗ Thị Thảo', 'Hà Nam', '2006-07-01', 'thaodt.jpg', 1, 9000000, '2021-06-23 18:15:04', '2021-06-23 18:15:04');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for product_galleries
+-- ----------------------------
+DROP TABLE IF EXISTS `product_galleries`;
+CREATE TABLE `product_galleries` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `img_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of product_galleries
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for products
+-- ----------------------------
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cate_id` int NOT NULL DEFAULT '1',
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `condition_id` int NOT NULL DEFAULT '1',
+  `price` int NOT NULL DEFAULT '0',
+  `sale_price` int DEFAULT NULL,
+  `short_desc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `quantity` int NOT NULL DEFAULT '0',
+  `pro_desc` text COLLATE utf8_unicode_ci,
+  `specification` text COLLATE utf8_unicode_ci,
+  `stars` decimal(3,2) DEFAULT NULL,
+  `status` int NOT NULL DEFAULT '1',
+  `total_views` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of products
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for sizes
+-- ----------------------------
+DROP TABLE IF EXISTS `sizes`;
+CREATE TABLE `sizes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of sizes
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
