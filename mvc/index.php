@@ -11,6 +11,10 @@ switch($url){
         $ctr = new HomeController();
         echo $ctr->index();
         break;
+    case "fake-data":
+        $ctr = new HomeController();
+        echo $ctr->fakeData();
+        break;
     default:
         echo "Đường dẫn không tồn tại";
         break;
