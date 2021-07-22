@@ -5,6 +5,7 @@ require_once './config/common.php';
 
 use App\Controllers\HomeController;
 use App\Controllers\Admin\DashboardController;
+use App\Controllers\Admin\CategoryController;
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch($url){
@@ -18,6 +19,9 @@ switch($url){
         break;
     case 'admin':
         $ctr = new DashboardController();
+        echo $ctr->index();
+    case 'admin/category':
+        $ctr = new CategoryController();
         echo $ctr->index();
     default:
         echo "Đường dẫn không tồn tại";
