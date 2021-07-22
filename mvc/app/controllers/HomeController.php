@@ -10,8 +10,15 @@ use App\Models\ProductGallery;
 class HomeController extends BaseController{
 
     public function index(){
-        // $emps = Employee::all();
-        // $this->render('home.index', ['employees' => $emps]);
+        $pagenumber  = isset($_GET['page']) ? $_GET['page'] : 1;
+        $pagesize = 9;
+        $offset = ($pagenumber-1)*$pagesize;
+        $products = Product::orderByDesc('total_views')->skip($offset)->take($pagesize)->get();
+        $cates = Category::orderByDesc('id')->take(8)->get();
+        $toprateProducts = Product::orderByDesc('stars')->orderByDesc('total_views')->take(2)->get();
+        $latestProducts = Product::orderByDesc('id')->take(3)->get();
+        
+        $this->render('home.index', compact('products', 'cates', 'toprateProducts', 'latestProducts'));
     }
 
     public function fakeData(){

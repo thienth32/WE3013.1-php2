@@ -34,6 +34,7 @@
                 </div>
                 <!--product option-->
                 <div class="row">
+                    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-4">
                         <!--product list-->
                         <div class="product-list">
@@ -44,275 +45,32 @@
                                 <a href="#">
                                     <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1-alt.jpg" alt="" />
                                 </a>
+                                <?php if($item->sale_price > 0): ?>
                                 <div class="sale-label">
                                     Sale
                                 </div>
+                                <?php endif; ?>
                             </div>
                             <div class="product-title">
-                                <h5><a href="#">CROPPED SKINNY ISA JEANS</a></h5>
+                                <h5><a href="#"><?php echo e($item->name); ?></a></h5>
                             </div>
                             <div class="product-price">
-                                <del>$79.00</del> $59.99
+                                <?php if($item->sale_price > 0): ?>
+                                <del><?php echo e($item->price); ?></del> <?php echo e($item->sale_price); ?>
+
+                                <?php else: ?>
+                                <?php echo e($item->price); ?>
+
+                                <?php endif; ?>
                             </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
+                            <?php echo $__env->make('clients._partials.product-rating', ['star' => $item->stars], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             <div class="product-btn">
                                 <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
                             </div>
                         </div>
                         <!--product list-->
                     </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/2.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/2-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">full sleeve cotton shirt</a></h5>
-                            </div>
-                            <div class="product-price">
-                                $49.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/3.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/3-alt.jpg" alt="" />
-                                </a>
-                                <div class="sale-label">
-                                    Sale
-                                </div>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">OPENWORK TRIMS DRESS</a></h5>
-                            </div>
-                            <div class="product-price">
-                                <del>$210.00</del> $179.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/4.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/4-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">full sleeve cotton t-shirt</a> </h5>
-                            </div>
-                            <div class="product-price">
-                                $39.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/5.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/5-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">SHOULDER DETAIL DRESS</a></h5>
-                            </div>
-                            <div class="product-price">
-                                $59.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/6.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/6-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">SLEEVE COTTON SWEAT SHIRT</a></h5>
-                            </div>
-                            <div class="product-price">
-                                $69.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/7.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/7-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">CROPPED SKINNY ISA JEANS</a></h5>
-                            </div>
-                            <div class="product-price">
-                                $59.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/8.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/8-alt.jpg" alt="" />
-                                </a>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">full sleeve cotton shirt</a></h5>
-                            </div>
-                            <div class="product-price">
-                                $49.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <i class="fa fa-star-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
-                    <div class="col-md-4">
-                        <!--product list-->
-                        <div class="product-list">
-                            <div class="product-img">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1-alt.jpg" alt="" />
-                                </a>
-                                <div class="sale-label">
-                                    Sale
-                                </div>
-                            </div>
-                            <div class="product-title">
-                                <h5><a href="#">OPENWORK TRIMS DRESS</a></h5>
-                            </div>
-                            <div class="product-price">
-                                <del>$220.00</del> $179.99
-                            </div>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                            </div>
-                            <div class="product-btn">
-                                <a href="#" class="btn btn-extra-small btn-dark-border  "><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                            </div>
-                        </div>
-                        <!--product list-->
-                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     <div class="text-center col-md-12">
                         <ul class="pagination custom-pagination">
@@ -343,22 +101,10 @@
                         <h6 class="text-uppercase">product category</h6>
                     </div>
                     <ul class="widget-category">
-                        <li><a href="#">Accessories</a>
+                        <?php $__currentLoopData = $cates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><a href="#"><?php echo e($c->name); ?></a>
                         </li>
-                        <li><a href="#">Branding</a>
-                        </li>
-                        <li><a href="#">Watches</a>
-                        </li>
-                        <li><a href="#">Hats & Caps</a>
-                        </li>
-                        <li><a href="#">Shoes</a>
-                        </li>
-                        <li><a href="#">Men's Cloth</a>
-                        </li>
-                        <li><a href="#">Belts</a>
-                        </li>
-                        <li><a href="#">Kids Collection</a>
-                        </li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
                 <!--product category-->
@@ -393,6 +139,7 @@
                         <h6 class="text-uppercase">latest Products</h6>
                     </div>
                     <ul class="widget-latest-post">
+                        <?php $__currentLoopData = $latestProducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li>
                             <div class="thumb">
                                 <a href="#">
@@ -400,62 +147,16 @@
                                 </a>
                             </div>
                             <div class="w-desk">
-                                <a href="#">Praesent pellentesque</a>
-                                <div class="price">$25.99</div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
+                                <a href="#"><?php echo e($lp->name); ?></a>
+                                <div class="price"><?php echo e(!empty($lp->sale_price) ? $lp->sale_price : $lp->price); ?></div>
+                                <?php echo $__env->make('clients._partials.product-rating', ['star' => $lp->stars], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 <div class="product-cart">
                                     <a href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/2.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="w-desk">
-                                <a href="#">Shirt With Mesh Sleeves</a>
-                                <div class="price">$35.99</div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="product-cart">
-                                    <a href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/3.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="w-desk">
-                                <a href="#">Checked Short Dress</a>
-                                <div class="price">$45.99</div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <div class="product-cart">
-                                    <a href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                </div>
-                            </div>
-                        </li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        
                     </ul>
                 </div>
                 <!--latest product-->
@@ -467,48 +168,24 @@
                         <h6 class="text-uppercase">Top Rated Products</h6>
                     </div>
                     <ul class="widget-latest-post">
+                        <?php $__currentLoopData = $toprateProducts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li>
                             <div class="thumb">
                                 <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/4.jpg" alt="">
+                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1.jpg" alt="">
                                 </a>
                             </div>
                             <div class="w-desk">
-                                <a href="#">Praesent pellentesque</a>
-                                <div class="price">$25.99</div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
+                                <a href="#"><?php echo e($tp->name); ?></a>
+                                <div class="price"><?php echo e(!empty($tp->sale_price) ? $tp->sale_price : $tp->price); ?></div>
+                                <?php echo $__env->make('clients._partials.product-rating', ['star' => $tp->stars], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 <div class="product-cart">
                                     <a href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <div class="thumb">
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/5.jpg" alt="">
-                                </a>
-                            </div>
-                            <div class="w-desk">
-                                <a href="#">Shirt With Mesh Sleeves</a>
-                                <div class="price">$35.99</div>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                </div>
-                                <div class="product-cart">
-                                    <a href="#"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
-                                </div>
-                            </div>
-                        </li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                       
                     </ul>
                 </div>
                 <!--top rated product-->
