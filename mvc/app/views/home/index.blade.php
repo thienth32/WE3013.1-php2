@@ -40,12 +40,15 @@
                         <!--product list-->
                         <div class="product-list">
                             <div class="product-img">
-                                <a href="#">
-                                    <img src="{{PUBLIC_PATH}}assets/img/product/1.jpg" alt="" />
-                                </a>
-                                <a href="#">
-                                    <img src="{{PUBLIC_PATH}}assets/img/product/1-alt.jpg" alt="" />
-                                </a>
+                                
+                                @foreach($item->galleries as $img)
+                                    @if($loop->iteration >= 3)
+                                        @break
+                                    @endif
+                                    <a href="#">
+                                        <img src="{{PUBLIC_PATH . $img->img_url}}" alt="" />
+                                    </a>
+                                @endforeach
                                 @if($item->sale_price > 0)
                                 <div class="sale-label">
                                     Sale

@@ -4,6 +4,7 @@ require_once './config/database.php';
 require_once './config/common.php';
 
 use App\Controllers\HomeController;
+use App\Controllers\Admin\DashboardController;
 
 $url = isset($_GET['url']) ? $_GET['url'] : "/";
 switch($url){
@@ -15,6 +16,9 @@ switch($url){
         $ctr = new HomeController();
         echo $ctr->fakeData();
         break;
+    case 'admin':
+        $ctr = new DashboardController();
+        echo $ctr->index();
     default:
         echo "Đường dẫn không tồn tại";
         break;

@@ -39,12 +39,15 @@
                         <!--product list-->
                         <div class="product-list">
                             <div class="product-img">
+                                
+                                <?php $__currentLoopData = $item->galleries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($loop->iteration >= 3): ?>
+                                    <?php break; ?>
+                                <?php endif; ?>
                                 <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1.jpg" alt="" />
+                                    <img src="<?php echo e(PUBLIC_PATH . $img->img_url); ?>" alt="" />
                                 </a>
-                                <a href="#">
-                                    <img src="<?php echo e(PUBLIC_PATH); ?>assets/img/product/1-alt.jpg" alt="" />
-                                </a>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php if($item->sale_price > 0): ?>
                                 <div class="sale-label">
                                     Sale
