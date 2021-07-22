@@ -6,7 +6,6 @@ use App\Models\Condition;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\ProductGallery;
-// use Faker\Faker;
 
 class HomeController extends BaseController{
 
