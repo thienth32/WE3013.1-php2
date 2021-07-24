@@ -14,6 +14,7 @@ $router->get('/', [HomeController::class, 'index']);
 $router->get('admin', [DashboardController::class, 'index']);
 $router->get('admin/category', [CategoryController::class, 'index']);
 $router->get('admin/product', [ProductController::class, 'index']);
+$router->get('admin/product/add', [ProductController::class, 'addForm']);
 
 
 
