@@ -15,6 +15,7 @@ $router->get('admin', [DashboardController::class, 'index']);
 $router->get('admin/category', [CategoryController::class, 'index']);
 $router->get('admin/product', [ProductController::class, 'index']);
 $router->get('admin/product/add', [ProductController::class, 'addForm']);
+$router->post('admin/product/add', [ProductController::class, 'saveAdd']);
 
 
 

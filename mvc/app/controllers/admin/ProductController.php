@@ -17,5 +17,18 @@ class ProductController extends BaseController{
         $cates = Category::all();
         $this->render('admin.product.add-form', ['cates' => $cates]);
     }
+
+    // hoàn thành việc lưu dữ liệu từ form để tạo mới sp + gallery
+    public function saveAdd(){
+        $listFile = $_FILES['galleries'];
+        $listTmp = $listFile['tmp_name'];
+        $listImgName = $listFile['name'];
+        for($i = 0; $i < count($listTmp); $i++){
+            $filename = uniqid() . '-' . $listImgName[$i];
+            move_uploaded_file($listTmp[$i], './public/uploads/product/' .$filename);
+            echo PUBLIC_PATH . "uploads/product/" . $filename;
+            echo "<br>";
+        }
+    }
 }
 ?>
