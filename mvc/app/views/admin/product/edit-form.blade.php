@@ -22,10 +22,6 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label for="">Gallery sản phẩm</label>
-                    <input type="file" name="galleries[]" multiple class="form-control">
-                </div>
-                <div class="form-group">
                     <label for="">Giá gốc</label>
                     <input type="text" name="price" class="form-control" value="{{$model->price}}">
                 </div>
@@ -35,17 +31,45 @@
                 </div>
             </div>
             <div class="col-12">
+                <table class="table table-stripped">
+                    <thead>
+                        <th>Url/Input</th>
+                        <th>Ảnh</th>
+                        <th>
+                            <button id="addGalleryRow" type="button" class="btn btn-sm btn-success">Thêm ảnh</button>
+                        </th>
+                    </thead>
+                    <tbody id="gallery_tbody">
+                        @foreach ($model->galleries as $item)
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="file" name="galleries[]" class="form-control">
+                                    </div>
+                                </td>
+                                <td>
+                                    <img src="{{PUBLIC_PATH . $item->img_url}}" width="80">
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm">Xóa</button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12">
                 <div class="form-group">
                     <label for="">Mô tả ngắn</label>
-                    <textarea class="form-control" rows="3" name="short_desc">{{$model->sale_price}}</textarea>
+                    <textarea class="form-control" rows="3" name="short_desc">{{$model->short_desc}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Mô tả</label>
-                    <textarea class="form-control" rows="5" name="pro_desc">{{$model->sale_price}}</textarea>
+                    <textarea class="form-control" rows="5" name="pro_desc">{{$model->pro_desc}}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="">Chi tiết thông số</label>
-                    <textarea class="form-control" rows="5" name="specification">{{$model->sale_price}}</textarea>
+                    <textarea class="form-control" rows="5" name="specification">{{$model->specification}}</textarea>
                 </div>
                 <div class="text-right">
                     <a href="{{BASE_URL . 'admin/product'}}" class="btn btn-danger">Hủy</a>
@@ -56,4 +80,27 @@
     </form>
     <br>
     
+@endsection
+@section('pagescript')
+    <script>
+        $(document).ready(function(){
+            $('#addGalleryRow').click(function(){
+                $('#gallery_tbody').append(`
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input type="file" name="galleries[]" class="form-control">
+                            </div>
+                        </td>
+                        <td>
+                            <img src="" width="80">
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm">Xóa</button>
+                        </td>
+                    </tr>
+                `);
+            })
+        });
+    </script>
 @endsection

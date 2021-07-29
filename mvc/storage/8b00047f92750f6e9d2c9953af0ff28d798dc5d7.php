@@ -64,6 +64,7 @@
 <!-- ./wrapper -->
 
 <?php echo $__env->make('admin.layouts.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->yieldContent('pagescript'); ?>
 </body>
 </html>
 <?php /**PATH /Library/WebServer/Documents/WE3013.1-php2/mvc/app/views/admin/layouts/main.blade.php ENDPATH**/ ?>

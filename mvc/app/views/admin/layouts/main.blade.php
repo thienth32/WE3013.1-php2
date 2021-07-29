@@ -64,5 +64,6 @@
 <!-- ./wrapper -->
 
 @include('admin.layouts.script')
+@yield('pagescript')
 </body>
 </html>
