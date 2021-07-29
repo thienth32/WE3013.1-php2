@@ -30,6 +30,7 @@
                 </div>
             </div>
             <div class="col-12">
+                <input type="hidden" name="removeGalleryId">
                 <table class="table table-stripped">
                     <thead>
                         <th>Url/Input</th>
@@ -50,7 +51,7 @@
                                     <img src="<?php echo e(PUBLIC_PATH . $item->img_url); ?>" width="80">
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm">Xóa</button>
+                                    <button type="button" onclick="noteRemoveImage(this, <?php echo e($item->id); ?>)" class="btn btn-danger btn-sm">Xóa</button>
                                 </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -82,6 +83,14 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('pagescript'); ?>
     <script>
+        function noteRemoveImage(el, galleryId = null){
+            if(galleryId != null){
+                let removeIds = $('[name="removeGalleryId"]').val();
+                removeIds += `|${galleryId}`;
+                $('[name="removeGalleryId"]').val(removeIds);
+            }
+            $(el).parent().parent().remove();
+        }
         $(document).ready(function(){
             $('#addGalleryRow').click(function(){
                 $('#gallery_tbody').append(`
@@ -95,7 +104,7 @@
                             <img src="" width="80">
                         </td>
                         <td>
-                            <button class="btn btn-danger btn-sm">Xóa</button>
+                            <button type="button" onclick="noteRemoveImage(this)" class="btn btn-danger btn-sm">Xóa</button>
                         </td>
                     </tr>
                 `);

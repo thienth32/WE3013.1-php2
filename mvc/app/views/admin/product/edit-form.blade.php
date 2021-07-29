@@ -31,6 +31,7 @@
                 </div>
             </div>
             <div class="col-12">
+                <input type="hidden" name="removeGalleryId">
                 <table class="table table-stripped">
                     <thead>
                         <th>Url/Input</th>
@@ -51,7 +52,7 @@
                                     <img src="{{PUBLIC_PATH . $item->img_url}}" width="80">
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm">Xóa</button>
+                                    <button type="button" onclick="noteRemoveImage(this, {{$item->id}})" class="btn btn-danger btn-sm">Xóa</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -83,6 +84,14 @@
 @endsection
 @section('pagescript')
     <script>
+        function noteRemoveImage(el, galleryId = null){
+            if(galleryId != null){
+                let removeIds = $('[name="removeGalleryId"]').val();
+                removeIds += `|${galleryId}`;
+                $('[name="removeGalleryId"]').val(removeIds);
+            }
+            $(el).parent().parent().remove();
+        }
         $(document).ready(function(){
             $('#addGalleryRow').click(function(){
                 $('#gallery_tbody').append(`
@@ -96,7 +105,7 @@
                             <img src="" width="80">
                         </td>
                         <td>
-                            <button class="btn btn-danger btn-sm">Xóa</button>
+                            <button type="button" onclick="noteRemoveImage(this)" class="btn btn-danger btn-sm">Xóa</button>
                         </td>
                     </tr>
                 `);
