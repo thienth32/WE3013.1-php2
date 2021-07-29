@@ -22,11 +22,10 @@ class ProductController extends BaseController{
     // hoàn thành việc lưu dữ liệu từ form để tạo mới sp + gallery
     public function saveAdd(){
         
-
         $model = new Product();
         $model->fill($_POST);
         
-        $model->save();
+        $model->save(); // $model->id
 
         $listFile = $_FILES['galleries'];
         $listTmp = $listFile['tmp_name'];
