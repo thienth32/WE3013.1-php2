@@ -4,6 +4,12 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model{
     protected $table = 'products';
 
+    public $fillable = [
+        'name', 'cate_id', 'quantity',
+        'price', 'sale_price', 'short_desc',
+        'pro_desc', 'specification'
+    ];
+
     public function galleries(){
         return $this->hasMany(ProductGallery::class, 'product_id');
     }

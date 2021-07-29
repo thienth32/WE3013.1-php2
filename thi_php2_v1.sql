@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 22/07/2021 09:30:46
+ Date: 29/07/2021 10:04:35
 */
 
 SET NAMES utf8mb4;
@@ -46,25 +46,25 @@ INSERT INTO `categories` VALUES (10, 'Vincenza Pacocha', '2021-07-20 04:43:33', 
 COMMIT;
 
 -- ----------------------------
--- Table structure for conditions
+-- Table structure for colors
 -- ----------------------------
-DROP TABLE IF EXISTS `conditions`;
-CREATE TABLE `conditions` (
+DROP TABLE IF EXISTS `colors`;
+CREATE TABLE `colors` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
--- Records of conditions
+-- Records of colors
 -- ----------------------------
 BEGIN;
-INSERT INTO `conditions` VALUES (1, 'New', '2021-07-20 04:43:33', '2021-07-20 04:43:33');
-INSERT INTO `conditions` VALUES (2, 'Like new', '2021-07-20 04:43:33', '2021-07-20 04:43:33');
-INSERT INTO `conditions` VALUES (3, 'Old', '2021-07-20 04:43:33', '2021-07-20 04:43:33');
-INSERT INTO `conditions` VALUES (4, 'Re-factory', '2021-07-20 04:43:33', '2021-07-20 04:43:33');
+INSERT INTO `colors` VALUES (1, 'Xanh', '2021-07-22 16:10:37', '2021-07-22 16:10:37');
+INSERT INTO `colors` VALUES (2, 'Đỏ', '2021-07-22 16:10:45', '2021-07-22 16:10:45');
+INSERT INTO `colors` VALUES (3, 'Tím', '2021-07-22 16:10:47', '2021-07-22 16:10:47');
+INSERT INTO `colors` VALUES (4, 'Vàng', '2021-07-22 16:10:50', '2021-07-22 16:10:50');
 COMMIT;
 
 -- ----------------------------
@@ -78,7 +78,7 @@ CREATE TABLE `product_galleries` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=357 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=362 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of product_galleries
@@ -440,6 +440,35 @@ INSERT INTO `product_galleries` VALUES (353, 'uploads/product/7.jpg', 100, '2021
 INSERT INTO `product_galleries` VALUES (354, 'uploads/product/3.jpg', 100, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
 INSERT INTO `product_galleries` VALUES (355, 'uploads/product/7.jpg', 100, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
 INSERT INTO `product_galleries` VALUES (356, 'uploads/product/7.jpg', 100, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
+INSERT INTO `product_galleries` VALUES (357, 'uploads/product/61021982f24de-photo1.png', 101, '2021-07-29 02:59:14', '2021-07-29 02:59:14');
+INSERT INTO `product_galleries` VALUES (358, 'uploads/product/61021982f3e5a-photo2.png', 101, '2021-07-29 02:59:14', '2021-07-29 02:59:14');
+INSERT INTO `product_galleries` VALUES (359, 'uploads/product/61021983000e3-photo3.jpg', 101, '2021-07-29 02:59:15', '2021-07-29 02:59:15');
+INSERT INTO `product_galleries` VALUES (360, 'uploads/product/61021983004c9-photo4.jpg', 101, '2021-07-29 02:59:15', '2021-07-29 02:59:15');
+INSERT INTO `product_galleries` VALUES (361, 'uploads/product/610219830086b-prod-1.jpg', 101, '2021-07-29 02:59:15', '2021-07-29 02:59:15');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for product_quantities
+-- ----------------------------
+DROP TABLE IF EXISTS `product_quantities`;
+CREATE TABLE `product_quantities` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `color_id` int DEFAULT NULL,
+  `product_id` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `amount` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of product_quantities
+-- ----------------------------
+BEGIN;
+INSERT INTO `product_quantities` VALUES (1, 1, 1, '2021-07-22 16:11:19', '2021-07-22 16:11:19', 12);
+INSERT INTO `product_quantities` VALUES (2, 2, 1, '2021-07-22 16:11:53', '2021-07-22 16:11:53', 10);
+INSERT INTO `product_quantities` VALUES (3, 1, 2, '2021-07-22 16:12:05', '2021-07-22 16:12:05', 5);
+INSERT INTO `product_quantities` VALUES (4, 3, 2, '2021-07-22 16:12:16', '2021-07-22 16:12:16', 2);
 COMMIT;
 
 -- ----------------------------
@@ -463,7 +492,7 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of products
@@ -472,7 +501,7 @@ BEGIN;
 INSERT INTO `products` VALUES (1, 8, 'Elmore Gleason IV', 3, 1885, 2, 'Gryphon: and it was quite out of sight, they were IN the well,\' Alice said to one of the birds and animals that had made the whole window!\' \'Sure, it does, yer honour: but it\'s an arm for all that.\'.', 54, 'HIS time of life. The King\'s argument was, that if something wasn\'t done about it in less than no time she\'d have everybody executed, all round. (It was this last remark that had made the whole party look so grave and anxious.) Alice could think of nothing better to say than his first remark, \'It was the BEST butter, you know.\' Alice had been looking at Alice for some time with great curiosity, and this was of very little use without my shoulders. Oh, how I wish I could show you our cat Dinah:.', 'Lobster Quadrille, that she hardly knew what she was saying, and the words all coming different, and then the other, and growing sometimes taller and sometimes shorter, until she had succeeded in bringing herself down to her usual height. It was so large a house, that she did not like to be a grin, and she said to herself, as she swam about, trying to find her way out. \'I shall be punished for it now, I suppose, by being drowned in my own tears! That WILL be a queer thing, to be sure! However,.', 1.00, 1, 113, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
 INSERT INTO `products` VALUES (2, 8, 'Dr. Jaden Wuckert', 3, 4760, NULL, 'Alice! Come here directly, and get ready to sink into the wood. \'It\'s the thing yourself, some winter day, I will tell you more than Alice could see her after the birds! Why, she\'ll eat a little.', 27, 'This time Alice waited patiently until it chose to speak again. In a minute or two. \'They couldn\'t have done that, you know,\' Alice gently remarked; \'they\'d have been ill.\' \'So they were,\' said the Dormouse; \'VERY ill.\' Alice tried to fancy what the flame of a candle is like after the candle is blown out, for she could not think of any good reason, and as the Caterpillar seemed to be no chance of getting her hands up to her chin in salt water. Her first idea was that she had to run back into.', 'Mouse with an important air, \'are you all ready? This is the driest thing I know. Silence all round, if you please! \"William the Conqueror, whose cause was favoured by the pope, was soon submitted to by the English, who wanted leaders, and had been of late much accustomed to usurpation and conquest. Edwin and Morcar, the earls of Mercia and Northumbria, declared for him: and even Stigand, the patriotic archbishop of Canterbury, found it advisable--\"\' \'Found WHAT?\' said the Duck. \'Found IT,\'.', 2.00, 1, 2839, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
 INSERT INTO `products` VALUES (3, 10, 'Alize Hagenes', 2, 3138, 703, 'THIS size: why, I should understand that better,\' Alice said with a trumpet in one hand and a crash of broken glass. \'What a number of changes she had forgotten the little creature down, and felt.', 386, 'I almost wish I\'d gone to see the Hatter instead!\' CHAPTER VII. A Mad Tea-Party There was a large pool all round her, about four inches deep and reaching half down the hall. After a time she heard a little pattering of footsteps in the distance, and she looked up eagerly, half hoping that they would call after her: the last time she saw them, they were trying to put the Dormouse into the teapot. \'At any rate I\'ll never go THERE again!\' said Alice as she picked her way through the wood. \'It\'s.', 'March Hare. \'I didn\'t know that cats COULD grin.\' \'They all can,\' said the Duchess; \'and that\'s a fact.\' Alice did not like the look of things at all, as the game was in such confusion that she never knew whether it was good practice to say it over) \'--yes, that\'s about the right distance--but then I wonder what Latitude or Longitude I\'ve got to?\' (Alice had no idea what Latitude was, or Longitude either, but thought they were nice grand words to say.) Presently she began again. \'I wonder if I.', 3.00, 1, 2363, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
-INSERT INTO `products` VALUES (4, 4, 'Heloise Okuneva DVM', 3, 27, NULL, 'FIT you,\' said the Hatter: \'let\'s all move one place on.\' He moved on as he spoke, and the second verse of the deepest contempt. \'I\'ve seen a cat without a porpoise.\' \'Wouldn\'t it really?\' said.', 75, 'Majesty,\' the Hatter began, in a trembling voice, \'--and I hadn\'t begun my tea--not above a week or so--and what with the bread-and-butter getting so thin--and the twinkling of the tea--\' \'The twinkling of the tea--\' \'The twinkling of the tea--\' \'The twinkling of the what?\' said the King. (The jury all brightened up again.) \'Please your Majesty,\' said the Knave, \'I didn\'t write it, and they can\'t prove I did: there\'s no name signed at the end.\' \'If you didn\'t sign it,\' said the Hatter with a.', 'Alice herself, and once again the tiny hands were clasped upon her knee, and the bright eager eyes were looking up into the air, and came flying down upon her: she gave a little scream, half of fright and half of anger, and tried to speak, but for a minute or two, it was as much as serpents do, you know.\' \'I DON\'T know,\' said the Caterpillar. This was not an encouraging opening for a conversation. Alice replied, rather shyly, \'I--I hardly know, sir, just at present--at least I know who I WAS.', 1.00, 1, 2603, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
+INSERT INTO `products` VALUES (4, 4, 'Heloise Okuneva DVM', 3, 27, NULL, 'FIT you,\' said the Hatter: \'let\'s all move one place on.\' He moved on as he spoke, and the second verse of the deepest contempt. \'I\'ve seen a cat without a porpoise.\' \'Wouldn\'t it really?\' said.', 75, 'Majesty,\' the Hatter began, in a trembling voice, \'--and I hadn\'t begun my tea--not above a week or so--and what with the bread-and-butter getting so thin--and the twinkling of the tea--\' \'The twinkling of the tea--\' \'The twinkling of the tea--\' \'The twinkling of the what?\' said the King. (The jury all brightened up again.) \'Please your Majesty,\' said the Knave, \'I didn\'t write it, and they can\'t prove I did: there\'s no name signed at the end.\' \'If you didn\'t sign it,\' said the Hatter with a.', 'Alice herself, and once again the tiny hands were clasped upon her knee, and the bright eager eyes were looking up into the air, and came flying down upon her: she gave a little scream, half of fright and half of anger, and tried to speak, but for a minute or two, it was as much as serpents do, you know.\' \'I DON\'T know,\' said the Caterpillar. This was not an encouraging opening for a conversation. Alice replied, rather shyly, \'I--I hardly know, sir, just at present--at least I know who I WAS.', 1.50, 1, 2603, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
 INSERT INTO `products` VALUES (5, 4, 'Ms. Isobel Hilpert', 4, 3142, 1878, 'Alice, \'how am I to get in at the righthand bit again, and she felt that there ought! And when I got up and beg for its dinner, and all the while, till at last came a little girl or a serpent?\' \'It.', 14, 'VERY nearly at the top of her voice. Nobody moved. \'Who cares for you?\' said Alice, (she had grown so large in the last concert!\' on which the words \'EAT ME\' were beautifully marked in currants. \'Well, I\'ll eat it,\' said Alice, (she had grown so large in the last concert!\' on which the wretched Hatter trembled so, that he shook both his shoes off. \'Give your evidence,\' the King repeated angrily, \'or I\'ll have you executed, whether you\'re nervous or not.\' \'I\'m a poor man, your Majesty,\' the.', 'Queen. \'Their heads are gone, if it please your Majesty!\' the Duchess began in a loud, indignant voice, but she stopped hastily, for the White Rabbit hurried by--the frightened Mouse splashed his way through the neighbouring pool--she could hear the very tones of her voice, and see that queer little toss of her head to feel which way it was growing, and she was quite pleased to find that she knew the name of nearly everything there. \'That\'s the judge,\' she said to herself; \'his eyes are so.', 3.00, 1, 1451, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
 INSERT INTO `products` VALUES (6, 2, 'Novella Spencer II', 2, 1492, NULL, 'Suppress him! Pinch him! Off with his whiskers!\' For some minutes it seemed quite dull and stupid for life to go nearer till she shook the house, \"Let us both go to on the OUTSIDE.\' He unfolded the.', 122, 'Mouse to tell them something more. \'You promised to tell me who YOU are, first.\' \'Why?\' said the Caterpillar. \'Well, perhaps you haven\'t found it so yet,\' said Alice; \'but when you have to turn into a chrysalis--you will some day, you know--and then after that into a butterfly, I should think very likely it can talk: at any rate, there\'s no harm in trying.\' So she began: \'O Mouse, do you know I\'m mad?\' said Alice. \'You must be,\' said the Gryphon. \'I mean, what makes them so shiny?\' Alice.', 'Digging for apples, yer honour!\' \'Digging for apples, indeed!\' said the Dormouse indignantly. However, he consented to go on. \'And so these three little sisters--they were learning to draw,\' the Dormouse went on, yawning and rubbing its eyes, for it was getting very sleepy; \'and they drew all manner of things--everything that begins with an M, such as mouse-traps, and the moon, and memory, and muchness--you know you say things are \"much of a muchness\"--did you ever see such a thing as a.', 5.00, 1, 841, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
 INSERT INTO `products` VALUES (7, 4, 'Madilyn Leuschke', 3, 120, NULL, 'THE.', 18, 'Hatter. \'You might just as well say that \"I see what I eat\" is the same thing as \"I get what I like\"!\' \'You might just as well say,\' added the March Hare, who had followed him into the court, by the way the people near the door began sneezing all at once. \'Give your evidence,\' said the King; and the White Rabbit hurried by--the frightened Mouse splashed his way through the wood. \'It\'s the stupidest tea-party I ever was at in all my life!\' Just as she said this, she came suddenly upon an open.', 'Alice. \'It must be a very pretty dance,\' said Alice timidly. \'Would you like to see a little of her knowledge. \'Just think of what work it would make with the day and night! You see the earth takes twenty-four hours to turn round on its axis--\' \'Talking of axes,\' said the Duchess, \'chop off her head!\' Alice glanced rather anxiously at the White Rabbit, trotting slowly back again, and we won\'t talk about cats or dogs either, if you don\'t like them!\' When the Mouse heard this, it turned round.', 4.00, 1, 2687, '2021-07-20 04:43:33', '2021-07-20 04:43:33');
@@ -569,6 +598,7 @@ INSERT INTO `products` VALUES (97, 9, 'Reid Boehm', 2, 4339, NULL, 'Forty-two. A
 INSERT INTO `products` VALUES (98, 6, 'Guadalupe Morar', 4, 488, NULL, 'The Gryphon sat up and saying, \'Thank you, sir, for your interesting story,\' but she gained courage as she could. \'The Dormouse is asleep again,\' said the Queen. \'You make me smaller, I can do no.', 240, 'The other guests had taken advantage of the Queen\'s absence, and were resting in the shade: however, the moment they saw her, they hurried back to the game. CHAPTER IX. The Mock Turtle\'s Story \'You can\'t think how glad I am to see you again, you dear old thing!\' said the Duchess, as she tucked her arm affectionately into Alice\'s, and they walked off together, Alice heard the King say in a low voice, \'Why the fact is, you see, Miss, this here ought to have finished,\' said the King. \'It began.', 'Gryphon whispered in reply, \'for fear they should forget them before the end of the trial.\' \'Stupid things!\' Alice began in a low voice. \'Not at all,\' said Alice: \'she\'s so extremely--\' Just then she heard something splashing about in the pool, \'and she sits purring so nicely by the fire, licking her paws and washing her face--and she is such a nice soft thing to nurse--and she\'s such a capital one for catching mice you can\'t think! And oh, I wish you could see her after the birds! Why, she\'ll.', 4.00, 1, 2017, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
 INSERT INTO `products` VALUES (99, 10, 'Mr. Armani West', 1, 4258, NULL, 'Kings and Queens, and among them Alice recognised the White Rabbit cried out, \'Silence in the kitchen that did not seem to dry me at all.\' \'In that case,\' said the March Hare had just begun \'Well,.', 386, 'MARMALADE\', but to her great disappointment it was empty: she did not get hold of it; then Alice, thinking it was very like having a game of play with a cart-horse, and expecting every moment to be trampled under its feet, ran round the thistle again; then the puppy began a series of short charges at the stick, and made believe to worry it; then Alice dodged behind a great thistle, to keep herself from being run over; and the moment she appeared on the other side, the puppy made another rush.', 'The Fish-Footman began by producing from under his arm a great letter, nearly as large as the Rabbit, and had no reason to be afraid of it. Presently the Rabbit came near her, she began, in a low, timid voice, \'If you please, sir--\' The Rabbit started violently, dropped the white kid gloves while she was peering about anxiously among the trees, a little sharp bark just over her head made her look up in a great hurry, muttering to himself as he came, \'Oh! the Duchess, the Duchess! Oh! won\'t she.', 1.00, 1, 1285, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
 INSERT INTO `products` VALUES (100, 6, 'Amparo Koch', 3, 1412, NULL, 'March Hare and his friends shared their never-ending meal, and the little passage: and THEN--she found herself safe in a hurry. \'No, I\'ll look first,\' she said, by way of expecting nothing but a.', 134, 'Cheshire cat,\' said the Duchess, \'and that\'s why. Pig!\' She said the last word with such sudden violence that Alice quite jumped; but she saw in another moment that it was quite impossible to say whether the blows hurt it or not. \'Oh, PLEASE mind what you\'re doing!\' cried Alice, jumping up and down in an agony of terror. \'Oh, there goes his PRECIOUS nose\'; as an unusually large saucepan flew close by it, and found in it a very small cake, on which the words \'EAT ME\' were beautifully marked in.', 'ARE a simpleton.\' Alice did not much like keeping so close to her, one on each side, and opened their eyes and mouths so VERY wide, but she gained courage as she went slowly after it: \'I never was so ordered about in all my life, never!\' They had not gone far before they saw the Mock Turtle said with a sigh: \'he taught Laughing and Grief, they used to do:-- \'How doth the little crocodile Improve his shining tail, And pour the waters of the Nile On every golden scale! \'How cheerfully he seems.', 3.00, 1, 986, '2021-07-20 04:43:34', '2021-07-20 04:43:34');
+INSERT INTO `products` VALUES (101, 5, 'thienth', 1, 2000, 1500, 'sanr pham1 ', 100, 'san pham 2', 'san pham 3', NULL, 1, NULL, '2021-07-29 02:59:14', '2021-07-29 02:59:14');
 COMMIT;
 
 -- ----------------------------

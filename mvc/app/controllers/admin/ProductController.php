@@ -3,6 +3,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductGallery;
 
 class ProductController extends BaseController{
 
@@ -20,15 +21,28 @@ class ProductController extends BaseController{
 
     // hoàn thành việc lưu dữ liệu từ form để tạo mới sp + gallery
     public function saveAdd(){
+        
+
+        $model = new Product();
+        $model->fill($_POST);
+        
+        $model->save();
+
         $listFile = $_FILES['galleries'];
         $listTmp = $listFile['tmp_name'];
         $listImgName = $listFile['name'];
-        for($i = 0; $i < count($listTmp); $i++){
-            $filename = uniqid() . '-' . $listImgName[$i];
-            move_uploaded_file($listTmp[$i], './public/uploads/product/' .$filename);
-            echo PUBLIC_PATH . "uploads/product/" . $filename;
-            echo "<br>";
+        if(count($listImgName) > 0){
+            for($i = 0; $i < count($listTmp); $i++){
+                $filename = uniqid() . '-' . $listImgName[$i];
+                move_uploaded_file($listTmp[$i], './public/uploads/product/' .$filename);
+                $galleryModel = new ProductGallery();
+                $galleryModel->product_id = $model->id;
+                $galleryModel->img_url = "uploads/product/" . $filename;
+                $galleryModel->save();
+            }
         }
+        header('location: ' . BASE_URL . 'admin/product');
+        
     }
 }
 ?>
