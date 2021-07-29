@@ -59,7 +59,7 @@
                             </ul>
                         </td>
                         <td>
-                            <a href="<?php echo e(BASE_URL . 'admin/product/edit?id=' . $p->id); ?>" class="btn btn-info">Sửa</a>
+                            <a href="<?php echo e(BASE_URL . 'admin/product/edit/' . $p->id); ?>" class="btn btn-info">Sửa</a>
                             <a href="<?php echo e(BASE_URL . 'admin/product/remove?id=' . $p->id); ?>" class="btn btn-danger">Xóa</a>
                         </td>
                     </tr>

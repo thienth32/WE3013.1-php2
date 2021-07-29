@@ -19,6 +19,21 @@ class ProductController extends BaseController{
         $this->render('admin.product.add-form', ['cates' => $cates]);
     }
 
+    public function editForm($id){
+        $model = Product::find($id);
+        if(!$model){
+            header('location: ' . BASE_URL . 'admin/product');
+            die;
+        }
+
+        $model->load('category', 'galleries');
+
+        $cates = Category::all();
+
+        $this->render('admin.product.edit-form', ['model' => $model, 'cates' => $cates]);
+
+    }
+
     // hoàn thành việc lưu dữ liệu từ form để tạo mới sp + gallery
     public function saveAdd(){
         

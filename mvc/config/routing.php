@@ -17,6 +17,8 @@ $router->get('admin/product', [ProductController::class, 'index']);
 $router->get('admin/product/add', [ProductController::class, 'addForm']);
 $router->post('admin/product/add', [ProductController::class, 'saveAdd']);
 
+$router->get('admin/product/edit/{id}', [ProductController::class, 'editForm']);
+
 
 
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
