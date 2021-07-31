@@ -45,7 +45,7 @@
                             <tr>
                                 <td>
                                     <div class="form-group">
-                                        <input type="file" name="galleries[]" class="form-control">
+                                        <p>{{$item->img_url}}</p>
                                     </div>
                                 </td>
                                 <td>
@@ -92,17 +92,33 @@
             }
             $(el).parent().parent().remove();
         }
+        function loadpreview(event, rowId) {
+            var reader = new FileReader();
+            var output = document.querySelector(`img#preview_gallery_${rowId}`);
+            reader.onload = function(){
+                output.src = reader.result;
+            };
+            if(event.target.files[0] == undefined){
+                output.src = "";
+                return false;
+            } else {
+                reader.readAsDataURL(event.target.files[0]);
+            }
+            
+        };
         $(document).ready(function(){
+            
             $('#addGalleryRow').click(function(){
+                let rowId = Date.now();
                 $('#gallery_tbody').append(`
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input type="file" name="galleries[]" class="form-control">
+                                <input type="file" name="galleries[]" onchange="loadpreview(event, ${rowId})" class="form-control">
                             </div>
                         </td>
                         <td>
-                            <img src="" width="80">
+                            <img id="preview_gallery_${rowId}" src="" width="80">
                         </td>
                         <td>
                             <button type="button" onclick="noteRemoveImage(this)" class="btn btn-danger btn-sm">Xóa</button>

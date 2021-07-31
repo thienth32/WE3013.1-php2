@@ -18,6 +18,7 @@ $router->get('admin/product/add', [ProductController::class, 'addForm']);
 $router->post('admin/product/add', [ProductController::class, 'saveAdd']);
 
 $router->get('admin/product/edit/{id}', [ProductController::class, 'editForm']);
+$router->post('admin/product/edit/{id}', [ProductController::class, 'saveEdit']);
 
 
 
