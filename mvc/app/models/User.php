@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
-class User{
-    static $data = "PHP2 - FPT Polytechnic";
+use Illuminate\Database\Eloquent\Model;
+class User extends Model{
+    protected $table = 'users';
 }
+
 ?>

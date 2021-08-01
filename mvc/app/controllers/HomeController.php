@@ -6,6 +6,7 @@ use App\Models\Condition;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\ProductGallery;
+use DateTime;
 
 class HomeController extends BaseController{
 
@@ -19,6 +20,72 @@ class HomeController extends BaseController{
         $latestProducts = Product::orderByDesc('id')->take(3)->get();
         
         $this->render('home.index', compact('products', 'cates', 'toprateProducts', 'latestProducts'));
+    }
+
+    public function login(){
+        // echo password_hash('123456', PASSWORD_DEFAULT);
+        // die;
+        if(isset($_COOKIE['login_token']) && !empty($_COOKIE['login_token'])){
+            $token = $_COOKIE['login_token'];
+            $now = new DateTime();
+            
+            $user = User::where('remember_token', $token)
+                        ->where('remember_expire', '>=', $now->format('Y-m-d H:i:s'))
+                        ->first();
+            if($user){
+                $_SESSION['auth'] = [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'avatar' => $user->avatar,
+                    'is_admin' => $user->is_admin,
+                ];
+                header('location: ' . BASE_URL . 'admin');die;
+            }else{
+                setcookie('login_token', '', time() - 1, '/');
+            }
+        }
+
+        $this->render('auth.login');
+    }
+
+    public function logout(){
+        unset($_SESSION['auth']);
+        header('location: ' . BASE_URL);
+        die;
+    }
+
+    public function postLogin(){
+        
+        ['email' => $email, 'password' => $password, 'remember' => $remember] = $_POST;
+        $user = User::where('email', $email)->first();
+        if(password_verify($password, $user->password)){
+
+            $_SESSION['auth'] = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'avatar' => $user->avatar,
+                'is_admin' => $user->is_admin,
+            ];
+            if($remember){
+                $token = sha1(uniqid() . $user['email']);
+                $expire = new DateTime("+15 days");
+                $user->remember_token = $token;
+                $user->remember_expire = $expire->format('Y-m-d H:i:s');
+                $user->save();
+
+                setcookie('login_token', $token, time() + (60*60*24*15), '/');
+            }else{
+                $user->remember_token = '';
+                $user->remember_expire = null;
+                $user->save();
+            }
+            header('location: ' . BASE_URL . 'admin');
+            die;
+        }
+
+        header('location: ' . BASE_URL . 'login?msg=Đăng nhập không thành công');
     }
 
     public function fakeData(){
