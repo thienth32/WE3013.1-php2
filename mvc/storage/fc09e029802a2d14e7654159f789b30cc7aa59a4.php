@@ -31,16 +31,22 @@
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
-          </div>
+          </div>          
         </div>
+        <?php if(isset($_GET['email-err'])): ?>
+            <p class="text-danger"><?php echo e($_GET['email-err']); ?></p>
+          <?php endif; ?>
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
-          </div>
+          </div>          
         </div>
+        <?php if(isset($_GET['password-err'])): ?>
+            <p class="text-danger"><?php echo e($_GET['password-err']); ?></p>
+          <?php endif; ?>
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

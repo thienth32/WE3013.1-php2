@@ -31,16 +31,22 @@
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
-          </div>
+          </div>          
         </div>
+        @isset($_GET['email-err'])
+            <p class="text-danger">{{$_GET['email-err']}}</p>
+          @endisset
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
-          </div>
+          </div>          
         </div>
+        @isset($_GET['password-err'])
+            <p class="text-danger">{{$_GET['password-err']}}</p>
+          @endisset
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">

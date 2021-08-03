@@ -51,13 +51,33 @@ class HomeController extends BaseController{
 
     public function logout(){
         unset($_SESSION['auth']);
+        setcookie('login_token', '', time() - 1, '/');
         header('location: ' . BASE_URL);
         die;
     }
 
     public function postLogin(){
         
+        // nhận dữ liệu từ form
         ['email' => $email, 'password' => $password, 'remember' => $remember] = $_POST;
+        // Validate dữ liệu
+        $errors = "";
+        if(empty($email)){
+            $errors .= "email-err=Hãy nhập email&";
+        }
+
+        if(empty($password)){
+            $errors .= "password-err=Hãy nhập mật khẩu&";
+        }
+
+        $errors = rtrim($errors, '&');
+        if(!empty($errors)){
+            
+            header('location: ' . BASE_URL .'login?' . $errors);
+            die;
+        }
+
+
         $user = User::where('email', $email)->first();
         if(password_verify($password, $user->password)){
 
